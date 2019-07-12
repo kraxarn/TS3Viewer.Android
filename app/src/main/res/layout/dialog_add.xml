@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_add_load"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Checking details, please wait"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_add_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#b00020"
+        android:visibility="gone"
+        android:text="Failed to connect"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_add_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="16dp"
+        android:hint="Name (optional)">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_add_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_add_ip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="16dp"
+        android:hint="IP Address">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_add_ip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="kraxarn.com"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_add_port"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="16dp"
+        android:hint="Port">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_add_port"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:text="9987"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_add_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="16dp"
+        android:hint="Query Port">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_add_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:text="10011"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- <item name="android:windowBackground">@android:color/black</item> -->
+        <!-- We can define a secondary color here to make FABs etc. look correct -->
+    </style>
+    <!-- Custom dialog theme -->
+    <style name="AppTheme.Dialog" parent="Theme.MaterialComponents.Dialog.Alert"/>
+</resources>

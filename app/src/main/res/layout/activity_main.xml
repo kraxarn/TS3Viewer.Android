@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".MainActivity">
+
+		<com.google.android.material.appbar.MaterialToolbar
+			android:id="@+id/toolbar"
+			android:background="@color/colorPrimary"
+			android:theme="@style/Widget.MaterialComponents.ActionBar.Solid"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			app:layout_constraintTop_toTopOf="parent"/>
+
+		<TextView
+			android:id="@+id/text_no_servers"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="32dp"
+			android:visibility="gone"
+			android:text="No servers added yet"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/list_servers"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+
+		<com.google.android.material.floatingactionbutton.FloatingActionButton
+			android:id="@+id/fab_add"
+			style="@style/Widget.MaterialComponents.FloatingActionButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			android:src="@drawable/ic_add"
+			android:layout_margin="16dp"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+	<!-- Server info sheet -->
+	<include
+		layout="@layout/dialog_server_info"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
