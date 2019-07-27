@@ -21,13 +21,15 @@ class ServersViewHolder(view: View) : RecyclerView.ViewHolder(view)
     val textIp      = view.findViewById<TextView>(R.id.text_server_ip)
     val textPlayers = view.findViewById<TextView>(R.id.text_server_players)
 
+    private val main = view.context as MainActivity
+
     private val ts3
         get() = Ts3(textIp.text.toString())
 
     init {
         view.setOnClickListener {
             // TODO: This ignores port settings
-            MainActivity.showServerInfo(ts3)
+            main.showServerInfo(ts3)
         }
         val options = view.findViewById<AppCompatImageButton>(R.id.button_options)
         options.setOnClickListener {
@@ -36,9 +38,9 @@ class ServersViewHolder(view: View) : RecyclerView.ViewHolder(view)
                 it.setOnMenuItemClickListener {item ->
                     when (item.itemId)
                     {
-                        R.id.menu_server_json -> AlertDialog.Builder(view.context)
+                        R.id.menu_server_json -> AlertDialog.Builder(main)
                             .setTitle("Server Data")
-                            .setMessage(Json(JsonConfiguration.Default).stringify(Ts3Data.serializer(), ts3.toData()))
+                            .setMessage(Json(JsonConfiguration.Stable).stringify(Ts3Data.serializer(), ts3.toData()))
                             .setPositiveButton("OK", null)
                             .show()
                     }

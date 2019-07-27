@@ -43,6 +43,14 @@ class MainActivity : AppCompatActivity()
 
     private lateinit var textNoServers: TextView
 
+    // Progress stuffs
+
+    private lateinit var serverInfoLoad: ProgressBar
+
+    private lateinit var serverInfo: BottomSheetBehavior<LinearLayout>
+
+    private lateinit var serverInfoList: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -150,35 +158,19 @@ class MainActivity : AppCompatActivity()
         addLoad.visibility = if (enabled) View.GONE else View.VISIBLE
     }
 
-    companion object
+    fun showServerInfo(ts3: Ts3)
     {
-        /*
-         * TODO
-         *  This needs to be done better,
-         *  like passing around the view or something
-         */
+        // Start showing loading
+        serverInfo.state = BottomSheetBehavior.STATE_EXPANDED
 
-        private lateinit var serverInfo: BottomSheetBehavior<LinearLayout>
-
-        private lateinit var serverInfoList: RecyclerView
-
-        // TODO: Fix this memory leak
-        private lateinit var serverInfoLoad: ProgressBar
-
-        fun showServerInfo(ts3: Ts3)
-        {
-            // Start showing loading
-            serverInfo.state = BottomSheetBehavior.STATE_EXPANDED
-
-            // Actually load
-            thread(true) {
-                ts3.connect()
-                val channels = ts3.channels
-                ts3.exit()
-                serverInfoList.post {
-                    serverInfoLoad.visibility = View.GONE
-                    serverInfoList.adapter = InfoAdapter(channels)
-                }
+        // Actually load
+        thread(true) {
+            ts3.connect()
+            val channels = ts3.channels
+            ts3.exit()
+            serverInfoList.post {
+                serverInfoLoad.visibility = View.GONE
+                serverInfoList.adapter = InfoAdapter(channels)
             }
         }
     }
