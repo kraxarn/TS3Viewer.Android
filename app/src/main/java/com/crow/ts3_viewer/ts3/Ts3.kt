@@ -22,6 +22,8 @@ class Ts3(private val host: String, private val port: Int = 9987,
 
     private var api: TS3Api? = null
 
+    fun toData() = Ts3Data(host, queryPort)
+
     fun connect(): Boolean
     {
         try {
