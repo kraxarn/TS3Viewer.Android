@@ -16,10 +16,10 @@ import kotlinx.serialization.json.JsonConfiguration
 
 class ServersViewHolder(view: View) : RecyclerView.ViewHolder(view)
 {
-    val imageLogo   = view.findViewById<AppCompatImageView>(R.id.image_server)
-    val textName    = view.findViewById<TextView>(R.id.text_server_name)
-    val textIp      = view.findViewById<TextView>(R.id.text_server_ip)
-    val textPlayers = view.findViewById<TextView>(R.id.text_server_players)
+    val imageLogo   = view.findViewById<AppCompatImageView>(R.id.image_server)!!
+    val textName    = view.findViewById<TextView>(R.id.text_server_name)!!
+    val textIp      = view.findViewById<TextView>(R.id.text_server_ip)!!
+    val textPlayers = view.findViewById<TextView>(R.id.text_server_players)!!
 
     private val main = view.context as MainActivity
 
