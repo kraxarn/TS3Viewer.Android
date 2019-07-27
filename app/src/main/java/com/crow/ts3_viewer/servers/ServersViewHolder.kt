@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.crow.ts3_viewer.MainActivity
 import com.crow.ts3_viewer.R
 import com.crow.ts3_viewer.ts3.Ts3
-import com.google.gson.Gson
+import com.crow.ts3_viewer.ts3.Ts3Data
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 
 class ServersViewHolder(view: View) : RecyclerView.ViewHolder(view)
 {
@@ -36,7 +38,7 @@ class ServersViewHolder(view: View) : RecyclerView.ViewHolder(view)
                     {
                         R.id.menu_server_json -> AlertDialog.Builder(view.context)
                             .setTitle("Server Data")
-                            .setMessage(Gson().toJson(ts3.toData()))
+                            .setMessage(Json(JsonConfiguration.Default).stringify(Ts3Data.serializer(), ts3.toData()))
                             .setPositiveButton("OK", null)
                             .show()
                     }
