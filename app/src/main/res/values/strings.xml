@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">TS3 Viewer</string>
+    <!-- About dialog -->
+    <string name="about">
+        TS3 Viewer is a simple app for querying TeamSpeak 3 servers.
+        It was made due to the lack of modern and good looking apps with similar functionality.\n\n
+        If you have any suggestions on improvements or would like to report a bug, please
+        send me an email (can be found on the Google Play page)!\n
+        Thanks to TheHolyWaffle for the TeamSpeak-3-Java-API library (licensed under MIT).\n\n
+        The source code is available on GitHub.
+    </string>
 </resources>

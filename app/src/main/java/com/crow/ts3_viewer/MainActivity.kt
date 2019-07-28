@@ -1,6 +1,11 @@
 package com.crow.ts3_viewer
 
+import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -145,6 +150,32 @@ class MainActivity : AppCompatActivity()
                 }
                 show()
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean
+    {
+        menuInflater.inflate(R.menu.menu_app_options, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+        return when (item.itemId)
+        {
+            R.id.menu_app_about -> {
+                AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.app_name))
+                    .setView(layoutInflater.inflate(R.layout.dialog_about, findViewById(android.R.id.content), false))
+                    .setNeutralButton("View Source") { _, _ ->
+                        startActivity(Intent(Intent.ACTION_VIEW)
+                            .setData(Uri.parse("https://github.com/kraxarn/Ts3Viewer.Android")))
+                    }
+                    .setPositiveButton("OK", null)
+                    .show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
