@@ -22,7 +22,7 @@ class Ts3(private val host: String, private val port: Int = 9987,
 
     private var api: TS3Api? = null
 
-    fun toData() = Ts3Data(host, queryPort)
+    fun toData() = Ts3Data(host, name, queryPort)
 
     fun connect(): Boolean
     {
@@ -46,7 +46,7 @@ class Ts3(private val host: String, private val port: Int = 9987,
     }
 
     fun toEntry(context: Context): ServersEntry =
-        ServersEntry(context.getDrawable(R.drawable.ic_server_network)!!, api!!.serverInfo.name, host,
+        ServersEntry(context.getDrawable(R.drawable.ic_server_network)!!, Ts3Data(host, api!!.serverInfo.name, queryPort),
             "${api!!.clients.count()}/${api!!.serverInfo.maxClients}")
 
     private fun getClientIcon(client: Client): Int

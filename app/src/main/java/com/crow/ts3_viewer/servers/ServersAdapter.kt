@@ -23,9 +23,10 @@ class ServersAdapter(private val entries: List<ServersEntry>) : RecyclerView.Ada
         val entry = entries[position]
 
         // TODO: Use setImageResource(Int) instead
+        // TODO: For now, name and host are the same until we have nickname support
         holder.imageLogo?.setImageDrawable(entry.icon)
-        holder.textName.text    = entry.name
-        holder.textIp.text      = entry.ip
+        holder.textName.text    = entry.data.host
+        holder.textIp.text      = entry.data.host
         holder.textPlayers.text = entry.players
     }
 }
