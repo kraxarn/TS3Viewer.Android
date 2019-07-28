@@ -61,9 +61,7 @@ class MainActivity : AppCompatActivity()
         val addDialogView = layoutInflater.inflate(R.layout.dialog_add, findViewById(R.id.parent), false)
 
         textInputs = arrayOf(
-            addDialogView.findViewById(R.id.text_layout_add_name),
             addDialogView.findViewById(R.id.text_layout_add_ip),
-            addDialogView.findViewById(R.id.text_layout_add_port),
             addDialogView.findViewById(R.id.text_layout_add_query)
         )
         addLoad = addDialogView.findViewById(R.id.layout_add_load)

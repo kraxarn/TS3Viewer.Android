@@ -8,7 +8,6 @@
 
     <LinearLayout
         android:id="@+id/layout_add_load"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -35,19 +34,6 @@
         android:text="Failed to connect"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_layout_add_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginTop="16dp"
-        android:hint="Name (optional)">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_add_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_layout_add_ip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,21 +45,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="kraxarn.com"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_layout_add_port"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginTop="16dp"
-        android:hint="Port">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_add_port"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberSigned"
-            android:text="9987"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
