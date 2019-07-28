@@ -23,8 +23,9 @@ class ServersViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     private val main = view.context as MainActivity
 
+    // TODO: Ignored query port
     private val ts3
-        get() = Ts3(textIp.text.toString())
+        get() = Ts3(textIp.text.toString(), textName.toString(), 1011)
 
     init {
         view.setOnClickListener {

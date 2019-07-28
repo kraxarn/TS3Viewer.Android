@@ -12,8 +12,7 @@ import com.github.theholywaffle.teamspeak3.api.exception.TS3ConnectionFailedExce
 import com.github.theholywaffle.teamspeak3.api.wrapper.Channel
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client
 
-class Ts3(private val host: String, private val port: Int = 9987,
-          private val queryPort: Int = 10011, private val name: String = host)
+class Ts3(private val host: String, private var name: String?, private val queryPort: Int)
 {
     private val config = TS3Config().apply {
         setHost(host)
@@ -22,20 +21,27 @@ class Ts3(private val host: String, private val port: Int = 9987,
 
     private var api: TS3Api? = null
 
-    fun toData() = Ts3Data(host, name, queryPort)
+    fun toData() = Ts3Data(host, name ?: host, queryPort)
 
     fun connect(): Boolean
     {
+        // Try to connect
         try {
             query.connect()
         } catch (e: TS3ConnectionFailedException) {
             return false
         }
 
+        // If connected, select first virtual server and set name
         if (query.isConnected)
+        {
             api = query.api.apply {
                 selectVirtualServerById(1)
             }
+
+            if (name == null)
+                name = api!!.serverInfo.name
+        }
 
         return query.isConnected
     }
@@ -46,7 +52,7 @@ class Ts3(private val host: String, private val port: Int = 9987,
     }
 
     fun toEntry(context: Context): ServersEntry =
-        ServersEntry(context.getDrawable(R.drawable.ic_server_network)!!, Ts3Data(host, api!!.serverInfo.name, queryPort),
+        ServersEntry(context.getDrawable(R.drawable.ic_server_network)!!, Ts3Data(host, name ?: api!!.serverInfo.name, queryPort),
             "${api!!.clients.count()}/${api!!.serverInfo.maxClients}")
 
     private fun getClientIcon(client: Client): Int

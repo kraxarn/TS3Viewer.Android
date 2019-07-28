@@ -139,7 +139,10 @@ class MainActivity : AppCompatActivity()
                         view.isEnabled = false
                         // Create TS3 API instance
                         ts3 = Ts3(
-                            findViewById<TextInputEditText>(R.id.edit_text_add_ip)?.text.toString()
+                            findViewById<TextInputEditText>(R.id.edit_text_add_ip)?.text.toString(),
+                            null,
+                            findViewById<TextInputEditText>(R.id.edit_text_add_query)?.text
+                                .toString().toInt()
                         )
                         // Try to connect (on another thread)
                         thread(true)
