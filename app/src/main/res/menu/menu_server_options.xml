@@ -3,4 +3,10 @@
     <item
         android:id="@+id/menu_server_json"
         android:title="View as JSON"/>
+    <item
+        android:id="@+id/menu_server_change_name"
+        android:title="Change name"/>
+    <item
+        android:id="@+id/menu_server_remove"
+        android:title="Remove"/>
 </menu>
