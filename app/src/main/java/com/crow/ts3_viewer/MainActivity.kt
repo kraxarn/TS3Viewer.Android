@@ -1,20 +1,16 @@
 package com.crow.ts3_viewer
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,12 +18,12 @@ import com.crow.ts3_viewer.info.InfoAdapter
 import com.crow.ts3_viewer.servers.ServersAdapter
 import com.crow.ts3_viewer.servers.ServersEntry
 import com.crow.ts3_viewer.ts3.Ts3
+import com.crow.ts3_viewer.ts3.Ts3Data
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import org.slf4j.LoggerFactory
 import kotlin.concurrent.thread
 
 /**
@@ -58,6 +54,11 @@ class MainActivity : AppCompatActivity()
      * List of server for the recycler view
      */
     private val serverList = mutableListOf<ServersEntry>()
+
+    /**
+     * List of TS3 data
+     */
+    private val serverDataList = mutableListOf<Ts3Data>()
 
     /**
      * Server list adapter
@@ -91,7 +92,18 @@ class MainActivity : AppCompatActivity()
         serverInfo.state = BottomSheetBehavior.STATE_HIDDEN
         serverInfoLoad = findViewById(R.id.progress_info_load)
 
-        // TODO: Load from file here
+        // Load saved entries from file
+        thread(true)
+        {
+            serverList.addAll(Config(this).load().map {
+                val entry = it.toEntry(this)
+                serverDataList.add(it)
+                runOnUiThread {
+                    serverListAdapter.notifyItemInserted(serverList.size - 1)
+                }
+                entry
+            })
+        }
 
         // Testing stuffs
         serverListAdapter.registerAdapterDataObserver(ServerListObserver(findViewById(R.id.text_no_servers)).apply {
@@ -150,7 +162,7 @@ class MainActivity : AppCompatActivity()
                             if (ts3!!.connect())
                             {
                                 // If successful, add to server list
-                                serverList.add(ts3!!.toEntry(this@MainActivity))
+                                addServer(ts3)
                                 this@MainActivity.runOnUiThread {
                                     serverListAdapter.notifyItemInserted(serverList.size - 1)
                                     dismiss()
@@ -211,6 +223,20 @@ class MainActivity : AppCompatActivity()
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    /**
+     * Adds server to recycler view and data list
+     */
+    private fun addServer(ts3: Ts3?)
+    {
+        ts3?.let {
+            serverList.add(it.toEntry(this))
+            serverDataList.add(it.toData())
+        }
+    }
+
+    fun getServerData(host: String): Ts3Data? =
+        serverDataList.find { d -> d.host == host }
 
     private fun setTextInputsEnabled(textInputs: Array<TextInputLayout>, addLoad: View, enabled: Boolean)
     {

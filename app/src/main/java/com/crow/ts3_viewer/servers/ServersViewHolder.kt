@@ -23,13 +23,11 @@ class ServersViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     private val main = view.context as MainActivity
 
-    // TODO: Ignored query port
     private val ts3
-        get() = Ts3(textIp.text.toString(), textName.toString(), 1011)
+        get() = Ts3(textIp.text.toString(), textName.text.toString(), main.getServerData(textName.text.toString())?.queryPort ?: 1011)
 
     init {
         view.setOnClickListener {
-            // TODO: This ignores port settings
             main.showServerInfo(ts3)
         }
         val options = view.findViewById<AppCompatImageButton>(R.id.button_options)

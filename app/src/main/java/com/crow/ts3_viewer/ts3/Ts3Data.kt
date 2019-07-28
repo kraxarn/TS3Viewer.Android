@@ -8,5 +8,7 @@ import kotlinx.serialization.Serializable
 data class Ts3Data(val host: String, val name: String, val queryPort: Int)
 {
     fun toEntry(context: Context): ServersEntry =
-        Ts3(host, name, queryPort).toEntry(context)
+        Ts3(host, name, queryPort).apply {
+            connect()
+        }.toEntry(context, this)
 }

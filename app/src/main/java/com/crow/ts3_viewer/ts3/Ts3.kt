@@ -51,8 +51,8 @@ class Ts3(private val host: String, private var name: String?, private val query
         query.exit()
     }
 
-    fun toEntry(context: Context): ServersEntry =
-        ServersEntry(context.getDrawable(R.drawable.ic_server_network)!!, Ts3Data(host, name ?: api!!.serverInfo.name, queryPort),
+    fun toEntry(context: Context, ts3Data: Ts3Data? = null): ServersEntry =
+        ServersEntry(context.getDrawable(R.drawable.ic_server_network)!!, ts3Data ?: Ts3Data(host, name ?: api!!.serverInfo.name, queryPort),
             "${api!!.clients.count()}/${api!!.serverInfo.maxClients}")
 
     private fun getClientIcon(client: Client): Int

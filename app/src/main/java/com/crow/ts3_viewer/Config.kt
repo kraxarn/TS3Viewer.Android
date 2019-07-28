@@ -9,9 +9,9 @@ import java.io.File
 
 class Config(private val context: Context)
 {
-    val json = Json(JsonConfiguration.Stable)
+    private val json = Json(JsonConfiguration.Stable)
 
-    val serversFile
+    private val serversFile
         get() = File(context.filesDir, "servers.json")
 
     fun load(): List<Ts3Data> =
